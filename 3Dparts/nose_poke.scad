@@ -2,7 +2,7 @@ screwD = 4;
 
 noseHoleD = 12;
 noseHoleH = 20;
-tolerance = 0.1;
+tolerance = 0.111;
 
 ledD = 5;
 ledH = 6;
