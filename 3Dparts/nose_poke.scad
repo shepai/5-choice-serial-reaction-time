@@ -6,11 +6,15 @@ tolerance = 0.1;
 
 ledD = 5;
 ledH = 6;
-wallT = 1;
+wallT = 2.5;
 
-backWallL = 240;
+backWallL = 170;
 backWallD = 250;
+backWallH = 170;
+
 pokeAreaH = 80;
+
+
 module nosePoke(){
     $fn=30;
 difference(){
@@ -65,23 +69,31 @@ cylinder(d=screwD,h=10);
 
 
 module backWall(){
-    difference([]){
-    %cylinder(d=backWallD,h=50,$fn=10);
+    $fn=14;
+    
+    
+    difference(){
+    
+    cylinder(d=backWallD,h=pokeAreaH);
     
     union(){
     translate([0,0,-1]){
-    cylinder(d=backWallD-15,h=52,$fn=10);
+    
+        cylinder(d=backWallD-15,h=pokeAreaH+2);
         
     }//end transalte
+
     translate([-backWallD/2,0,-1]){
-    %cube([backWallD+4,backWallD,52]);
+    cube([backWallD+4,backWallD,pokeAreaH+2]);
     }//end translate
 }//end union
 }//end difference
     }//end module
-backWall(); 
-  translate([0,-(backWallD)/2+20,0]){ 
+//backWall(); 
+  translate([0,-(backWallD)/2+20,pokeAreaH/2-noseHoleD/2]){ 
      rotate([90,0,0]){ 
     cylinder(d=noseHoleD+wallT,h=20);
      }//end rotate
   }//end translate
+  
+  nosePoke();
