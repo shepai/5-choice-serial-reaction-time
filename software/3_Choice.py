@@ -115,6 +115,7 @@ while True:
 # count the no of seconds to get the magazine latency
 
 For i in range(50):
+    
     led_mag.value(1)
     feeder.value(1)
     utime.sleep(1)
@@ -123,10 +124,20 @@ For i in range(50):
     
     while IR_sensor_mag.value() == 0:
         mag_latency = utime.ticks_diff(utime.ticks_ms(), mag_timer_start)
-    
-    led_mag.value(0)
-    utime.sleep(urandom.choice(4, 8, 16, 32)) #ITI
 
+    led_mag.value(0)
+    ITI_time1 = utime.ticks_ms()
+    ITI_time2 = utime.ticks_ms()
+    magazine_count = 0
+    ITI = urandom.choice(4, 8, 16, 32)*1000
+    while ITI_time2-ITI_time1<ITI:
+        ITI_time2 = utime.ticks_ms()
+        if IR_sensor_mag.value() == 1:
+            magazine_count = magazine_count+1
+            utime.sleep(10)    
+    
+    i,mag_timer_start,"magazine",ITI,mag_latency,magazine_count
+    "Number of trial, Starttime, Stage, ITI, Magazine Latency, Number of premature magazine responses, Number of np1 responses, Number of np2 responses, Number of np3 responses"
 
 
 
@@ -150,7 +161,7 @@ For i in range(50):
 # Array format for the data:
 # array format magazine training (c = 1)  
 # x(0) = start time of trial 
-# x(1) = Computer time (Hours) x
+# x(1) = 
 # x(2) = Stage (1 = magazine, 2 = training_1, 3 = training_2, 4 = SD_16, 5 = SD_8, 6 = SD_4, 7 = SD_2, 8 = SD_1.5, 9 = SD_1, 10 = vITI, 11 = SD_1, 12 = vSD, 13 = SD_1) 
 # x(3) = ITI during this trial 
 # x(4) = variable b; in this case number of trials (to be checked with criterion) 
@@ -160,6 +171,7 @@ For i in range(50):
 # x(8) = Number of np2 responses 
 # x(9) = Number of np3 responses 
 
-
-
-
+# add this above
+file = open("mid_mag_training.csv", "w")
+file.write("Number of trial, Starttime, Stage, ITI, Magazine Latency, Number of premature magazine responses, Number of np1 responses, Number of np2 responses, Number of np3 responses")
+file.close() #at the end
