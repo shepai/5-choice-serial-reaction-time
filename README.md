@@ -21,7 +21,7 @@ This system is the first implementation of a complete behavioural box using BeeH
 - other components:
 - - Makerbeams for the box frame
 - - perspex sheets for box wall
-- - food pelet dispenser based on this [model](https://open-ephys.atlassian.net/wiki/spaces/OEW/pages/79069188/Food+Pellet+Dispenser)
+- - food pellet dispenser based on this [model](https://open-ephys.atlassian.net/wiki/spaces/OEW/pages/79069188/Food+Pellet+Dispenser)
 - - 3D printed parts for the different manipulanda
   
 ### Software:
