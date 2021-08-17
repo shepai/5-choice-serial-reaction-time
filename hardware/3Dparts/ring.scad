@@ -1,55 +1,20 @@
-//cylinder(10,10,25, $fn = 200);
+///////////////////////////////////////
+// Module to make rings              //
+// aka cylinders with holes in them  //
+// ring (hole diameter,              //
+//       ring thickness,             //
+//       ring height)                //
+// developed by AM Chagas 09-2019    //
+//      CC-BY-SA 4.0                 //
+///////////////////////////////////////
 
+module ring(ringd=10,ringb=5,ringh=2){
+    difference(){
+        cylinder(d=ringd+ringb,h=ringh);
+        translate([0,0,-1]){
+            cylinder(d=ringd,h=ringh+2);
+        }//endtranslate
+    }//end difference
+}//end module
 
-module doorhole(){
- translate([]){   
- cylinder(50,50,10, $fn = 200);   
-    
-    
-}}
-
-
-
-
-module outerring(){
-  translate(0,0,-2){
- cylinder(12,d=72,d=72, $fn = 200);   
-    
-    
-}}
-
-
-
-
-module outerring2(){
-      translate(0,0,-2){
-
-     cylinder(12,d=51,d=51, $fn = 200);   
-}
-}
-
-difference(){
-    outerring();
-    outerring2();
-        
-
-}
-
-
-module innerring1(){
-   translate([0,0,10]){ 
- cylinder(5.5,d=51,d=51, $fn = 200);   
-    
-   }
-}
-
-module innerring2(){
-   translate([0,0,10]){ 
- cylinder(10,d=44,d=44, $fn = 200);   
-    
-   }
-}
-difference(){
-    innerring1();
-    innerring2();
-}
+//ring(10,10,50);
