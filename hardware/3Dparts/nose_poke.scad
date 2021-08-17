@@ -1,13 +1,13 @@
 screwD = 4;
 
 noseHoleD = 12;
-noseHoleH = 12;
+noseHoleH = 11;
 tolerance = 0.1;
 
 ledDx = 8; // main LED
 ledD = 5;
 ledH = 6;
-wallT = 2.5;
+wallT = 2;
 
 module nosePoke(){
     $fn=30;
@@ -16,7 +16,7 @@ union(){
 cylinder(d=noseHoleD+wallT,h=noseHoleH+wallT);
 cylinder(d=noseHoleD+2*screwD+7,h=wallT);
 translate([0,0,noseHoleH+wallT]){
-cylinder(d=ledDx+2,h=ledH);
+cylinder(d=ledDx+2,h=ledH-1);
 }//end translate
 
 translate([(noseHoleD+1)/2,0,ledD]){
@@ -59,9 +59,6 @@ cylinder(d=screwD+2*tolerance,h=10);
 }//end translate
 }//end difference
 }//end module
-
-
-
 
   
 nosePoke();
