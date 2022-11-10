@@ -7,7 +7,7 @@ SENSOR_MONITOR={0:0,1:0,2:0} #this will track change
 MINUS=utime.time()
 
 
-
+MAXSIZE=10000
 def getLen():
     print(len(DATA))
 
@@ -15,7 +15,7 @@ def addToData(M=0, datainput):
     global DATA
     #this is where the sensors would be read and any changes would be added here
     DATA[str(utime.time()-M)]=[datainput]
-    if len(DATA)>=100: #error prevention
+    if len(DATA)>=MAXSIZE: #error prevention
         i=list(DATA.keys())
         DATA.pop(i)
 
