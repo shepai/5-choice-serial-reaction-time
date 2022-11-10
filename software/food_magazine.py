@@ -1,4 +1,4 @@
-#PHASE 1 ESP37
+#PHASE 1 ESP32
 
 #T1 PHASE ESP32 is used currently as a circuit board for the SENSOR of the box:
                 #It replaces the bottons 
@@ -7,14 +7,18 @@
 import machine
 import utime
 import random
+import board_serial as bs
+
 #T1 PHASE:
     #1. Use 3 lights and 3 buttons to mark the NP
     #2 When 1/3 button is pressed --> All lights turn off and food dispenser is on
     #Mouse collects food
     #Again but with the time interval
-        
+
+
+
 def food_training():
-    led=machine.Pin(5, machine.Pin.OUT) #LED WORKS
+    led=machine.Pin(14, machine.Pin.OUT) #LED WORKS
     button_food=machine.Pin(15,machine.Pin.IN)
 
 
@@ -42,7 +46,7 @@ def food_training():
     NP_5.value(0)
 
 
-    button_pressed = False
+    #button_pressed = False
 
 
     #print(button_food.value())
@@ -51,14 +55,15 @@ def food_training():
 
     #Allows the test go for 50 turns
     #for x in range (1,50):
-    for x in range (1,51):
+    for x in range (1,5):
         timer_start= utime.ticks_ms()
-        print (bytes("Trial "+str(x),'utf-8'))
+        bs.addToData(M=0, datainput="Trial "+str(x))
         #ITI
         #times=[4,8,16,32]
         times=[1]
         times_num = random.choice(times)
-        print (bytes("ITI "+str(times_num),'utf-8'))
+        bs.addToData(M=0, datainput="ITI "+str(times_num))
+        #print (bytes("ITI "+str(times_num),'utf-8'))
         #print("ITI ", times_num) #All the times num are for the randomisation fo the lights   
         led.value(0)  #During this the LED of the food dispenser is off
         utime.sleep(times_num) # after this, the timer is silent
@@ -68,16 +73,19 @@ def food_training():
         #print("Food is out") (comment out for data analysis)
 
         while button_food.value() == 1:
-            led.value(1)
+            #print(button_food.value())
+            timer_food = utime.ticks_ms()
+            #led.value(1)
             #print("uues")
 
         led.value(0)
             
-        timer_food = utime.ticks_ms()
+        
         mouse_to_food = timer_food - timer_start
-        print (bytes("M2F "+str(mouse_to_food),'utf-8'))
+        bs.addToData(M=0, datainput="M2F "+str(mouse_to_food))
+        #print ("M2F "+str(mouse_to_food),'utf-8')
         #print("M2F ", mouse_to_food, "ms")
-       
+    print("END")
 
 
 
