@@ -1,3 +1,12 @@
+////////////////////////////////////////////
+// Curved wall at the back of box 
+// containing holes so that nosepoke 
+// ports can be attached
+//
+// CC BY SA 4.0
+////////////////////////////////////////////
+
+
 // for the sides to slide
 
 slideWallx = 2.6;

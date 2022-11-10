@@ -1,3 +1,4 @@
+
 Smoothness = 360;
 tol = 0.1;
 Walls = 2;

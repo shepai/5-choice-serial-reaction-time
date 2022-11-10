@@ -1,3 +1,10 @@
+//////////////////////////////////////////
+//adapter to connect an acrylic tube that 
+// connects the home box with the testing 
+// box
+// CC BY SA 4.0
+//////////////////////////////////////////
+
 //cylinder(10,10,25, $fn = 200);
 
 /* **** Common parameters **** */
@@ -46,12 +53,7 @@ module outerring2(){
 }
 }
 
-difference(){
-    outerring();
-    outerring2();
-        
 
-}
 
 
 module innerring1(){
@@ -67,6 +69,12 @@ module innerring2(){
     
    }
 }
+
+difference(){
+    outerring();
+    outerring2();
+}
+
 difference(){
     innerring1();
     innerring2();
