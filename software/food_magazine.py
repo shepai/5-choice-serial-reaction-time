@@ -87,7 +87,8 @@ def food_training():
         #print ("M2F "+str(mouse_to_food),'utf-8')
         #print("M2F ", mouse_to_food, "ms")
     #addToData(M=0, datainput="END")
-    isEnded()
+    #isEnded()
+    print("END") #this should break the recording
 
 
 
