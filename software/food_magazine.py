@@ -7,7 +7,7 @@
 import machine
 import utime
 import random
-import board_serial as bs
+from board_serial import *
 
 #T1 PHASE:
     #1. Use 3 lights and 3 buttons to mark the NP
@@ -55,14 +55,14 @@ def food_training():
 
     #Allows the test go for 50 turns
     #for x in range (1,50):
-    for x in range (1,5):
+    for x in range (1,4):
+        
         timer_start= utime.ticks_ms()
-        bs.addToData(M=0, datainput="Trial "+str(x))
         #ITI
         #times=[4,8,16,32]
-        times=[1]
+        times=[1,1.2,1.1]
         times_num = random.choice(times)
-        bs.addToData(M=0, datainput="ITI "+str(times_num))
+        
         #print (bytes("ITI "+str(times_num),'utf-8'))
         #print("ITI ", times_num) #All the times num are for the randomisation fo the lights   
         led.value(0)  #During this the LED of the food dispenser is off
@@ -79,13 +79,15 @@ def food_training():
             #print("uues")
 
         led.value(0)
-            
-        
         mouse_to_food = timer_food - timer_start
-        bs.addToData(M=0, datainput="M2F "+str(mouse_to_food))
+        
+        addToData(M=x, datainput="Trial "+str(x))
+        addToData(M=x, datainput="ITI "+str(times_num))
+        addToData(M=x, datainput="M2F "+str(mouse_to_food))
         #print ("M2F "+str(mouse_to_food),'utf-8')
         #print("M2F ", mouse_to_food, "ms")
-    print("END")
+    #addToData(M=0, datainput="END")
+    isEnded()
 
 
 

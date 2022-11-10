@@ -113,7 +113,7 @@ class Board:
                     data=self.COM.exec('getData('+str(channels)+')').decode("utf-8").replace("\r\n","") #decode data
                     dic=eval(data) #convert to a dictionary of items
                     log.append(dic)
-                seq=self.COM.exec('getEnded()').decode("utf-8").replace("\r\n","")
+                seq=self.COM.exec('isEnded()').decode("utf-8").replace("\r\n","")
         print(log)
 
 
